@@ -1,0 +1,23 @@
+
+
+import rs.data.api.bo.ILongBO
+import rs.baselib.bean.NamedObject
+
+/** My Factory */
+factory com.lh.loungemon.data.LoungeModel {
+	
+	abstract entity DataObject extends ILongBO {
+	}
+	
+	/** Describes a LH lounge */
+	entity Lounge extends  DataObject, NamedObject {
+		/** IATA code of the lounge location, e.g. FRA */
+		location : String;
+		/** <code>true</code> when this is a F/CL lounge, <code>false</code> otherwise */
+		firstClass : boolean;
+		/** <code>true</code> when this is a C/CL lounge, <code>false</code> otherwise */
+		businessClass : boolean;
+		/** <code>true</code> when this is a Senator lounge, <code>false</code> otherwise */
+		senator : boolean; 
+	}
+}
