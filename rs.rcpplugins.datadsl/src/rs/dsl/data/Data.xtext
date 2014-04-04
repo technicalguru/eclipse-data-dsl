@@ -1,9 +1,22 @@
-grammar rs.dsl.data.Data with org.eclipse.xtext.common.Terminals
+grammar rs.dsl.data.Data with org.eclipse.xtext.xbase.Xbase 
+//grammar rs.dsl.data.Data with org.eclipse.xtext.common.Terminals
 
 generate dataDsl "http://download.ralph-schuster.eu/dsl/Data"
 
+
 Domainmodel:
-	(elements += AbstractElement)*
+	importSection=XImportSection?
+	(factories += FactoryDefinition)*
+;
+
+AbstractElement:
+  PackageDeclaration | Entity
+;
+
+FactoryDefinition:
+	'factory' name = QualifiedName '{'
+		(elements += AbstractElement)*
+	'}'
 ;
 
 PackageDeclaration:
@@ -12,36 +25,105 @@ PackageDeclaration:
 	'}'
 ;
 
-AbstractElement:
-	PackageDeclaration | Type | Import
-;
-
-QualifiedName:
-	ID ('.' ID)*
-;
-
-Import:
-	'import' importedNamespace = QualifiedNameWithWildcard
-;
-
-QualifiedNameWithWildcard:
-	QualifiedName '.*'?
-;
-    
-Type:
-	DataType | Entity
-;
-
-DataType:
-	'datatype' name = ID
-;
-
 Entity:
-	'entity' name = ID ('extends' superType = [Entity | QualifiedName])? '{'
+	(options += Option)? 'entity' name = ValidID ('extends' (superTypes += JvmParameterizedTypeReference) (',' (superTypes += JvmParameterizedTypeReference))*)? '{'
 		(features += Feature)*
 	'}'
 ;
-
+ 
 Feature:
-	(many ?= 'many')? name = ID ':' type = [Type | QualifiedName]
+  name = ValidID ':' type = JvmTypeReference ';'
+; 
+
+Option:
+	'abstract'
 ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//Domainmodel:
+//	(includes += Include)*
+//	(elements += AbstractElement)*
+//;
+// 
+//Include:
+//	'include' importURI=STRING 
+//;
+//
+//PackageDeclaration:
+//	'package' name = QualifiedName '{' 
+//		(description=Description ';')? 
+//		(elements += AbstractElement)* 
+//	'}'
+//;
+// 
+//AbstractElement:
+//	PackageDeclaration | Type | Import
+//;
+// 
+//QualifiedName:
+//	ID ('.' ID)*
+//;
+// 
+//Import:
+//	'import' importedNamespace = QualifiedNameWithWildcard 
+//;
+//
+//QualifiedNameWithWildcard:
+//	QualifiedName '.*'?
+//;
+//
+//Type:
+//	DataType | Entity
+//;
+//
+//Description:
+//	'description' '(' text=STRING ')'
+//;
+//
+//DataType:
+//	'datatype' name=ID ';'
+//;
+//
+//SuperType: 
+//	Entity | DataType
+//;
+//
+//Entity:
+//	'entity' name = ID ('extends' (superTypes += [SuperType | QualifiedName])+)? '{'
+//		(description=Description ';')? 
+//		(features += Feature)*
+//	'}'
+//;
+//
+//Feature:
+//	(many ?= 'many')? name = ID ':' type = [Type | QualifiedName] (description=Description)? ';'
+//;

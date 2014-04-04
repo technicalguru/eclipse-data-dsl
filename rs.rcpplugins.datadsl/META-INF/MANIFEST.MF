@@ -11,6 +11,27 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe2.launch;resolution:=optional
-Import-Package: org.apache.log4j
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.eclipse.xtext.xbase.lib,
+ rs.rcpplugins.common.data
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: rs.dsl.data,
+ rs.dsl.data.services,
+ rs.dsl.data.dataDsl,
+ rs.dsl.data.dataDsl.impl,
+ rs.dsl.data.dataDsl.util,
+ rs.dsl.data.serializer,
+ rs.dsl.data.parser.antlr,
+ rs.dsl.data.parser.antlr.internal,
+ rs.dsl.data.validation,
+ rs.dsl.data.scoping,
+ rs.dsl.data.generator,
+ rs.dsl.data.formatting,
+ rs.dsl.data.jvmmodel

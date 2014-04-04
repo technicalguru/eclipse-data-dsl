@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rs.rcpplugins.datadsl/src-gen" editDirectory="/rs.rcpplugins.datadsl.edit/src"
+    editorDirectory="/rs.rcpplugins.datadsl.editor/src" modelPluginID="rs.rcpplugins.datadsl"
+    forceOverwrite="true" modelName="Data" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="rs.rcpplugins.datadsl.edit"
+    editorPluginID="rs.rcpplugins.datadsl.editor" runtimeVersion="2.9" usedGenPackages="../../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xtype">
+  <genPackages prefix="DataDsl" basePackage="rs.dsl.data" disposableProviderFactory="true"
+      fileExtensions="data" ecorePackage="Data.ecore#/">
+    <genClasses ecoreClass="Data.ecore#//Domainmodel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Domainmodel/importSection"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Domainmodel/factories"/>
+    </genClasses>
+    <genClasses ecoreClass="Data.ecore#//AbstractElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//AbstractElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Data.ecore#//FactoryDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//FactoryDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//FactoryDefinition/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Data.ecore#//PackageDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//PackageDeclaration/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="Data.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//Entity/options"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Entity/superTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Entity/features"/>
+    </genClasses>
+    <genClasses ecoreClass="Data.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//Feature/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Feature/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
