@@ -38,6 +38,7 @@ public class DataParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getAbstractElementAccess().getAlternatives(), "rule__AbstractElement__Alternatives");
+					put(grammarAccess.getOptionAccess().getAlternatives(), "rule__Option__Alternatives");
 					put(grammarAccess.getXAssignmentAccess().getAlternatives(), "rule__XAssignment__Alternatives");
 					put(grammarAccess.getOpMultiAssignAccess().getAlternatives(), "rule__OpMultiAssign__Alternatives");
 					put(grammarAccess.getOpEqualityAccess().getAlternatives(), "rule__OpEquality__Alternatives");
@@ -236,10 +237,12 @@ public class DataParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getDomainmodelAccess().getImportSectionAssignment_0(), "rule__Domainmodel__ImportSectionAssignment_0");
 					put(grammarAccess.getDomainmodelAccess().getFactoriesAssignment_1(), "rule__Domainmodel__FactoriesAssignment_1");
-					put(grammarAccess.getFactoryDefinitionAccess().getNameAssignment_1(), "rule__FactoryDefinition__NameAssignment_1");
-					put(grammarAccess.getFactoryDefinitionAccess().getElementsAssignment_3(), "rule__FactoryDefinition__ElementsAssignment_3");
-					put(grammarAccess.getPackageDeclarationAccess().getNameAssignment_1(), "rule__PackageDeclaration__NameAssignment_1");
-					put(grammarAccess.getPackageDeclarationAccess().getElementsAssignment_3(), "rule__PackageDeclaration__ElementsAssignment_3");
+					put(grammarAccess.getFactoryDefinitionAccess().getOptionsAssignment_0(), "rule__FactoryDefinition__OptionsAssignment_0");
+					put(grammarAccess.getFactoryDefinitionAccess().getNameAssignment_2(), "rule__FactoryDefinition__NameAssignment_2");
+					put(grammarAccess.getFactoryDefinitionAccess().getElementsAssignment_4(), "rule__FactoryDefinition__ElementsAssignment_4");
+					put(grammarAccess.getPackageDeclarationAccess().getOptionsAssignment_0(), "rule__PackageDeclaration__OptionsAssignment_0");
+					put(grammarAccess.getPackageDeclarationAccess().getNameAssignment_2(), "rule__PackageDeclaration__NameAssignment_2");
+					put(grammarAccess.getPackageDeclarationAccess().getElementsAssignment_4(), "rule__PackageDeclaration__ElementsAssignment_4");
 					put(grammarAccess.getEntityAccess().getOptionsAssignment_0(), "rule__Entity__OptionsAssignment_0");
 					put(grammarAccess.getEntityAccess().getNameAssignment_2(), "rule__Entity__NameAssignment_2");
 					put(grammarAccess.getEntityAccess().getSuperTypesAssignment_3_1(), "rule__Entity__SuperTypesAssignment_3_1");
