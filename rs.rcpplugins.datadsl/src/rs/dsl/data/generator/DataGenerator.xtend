@@ -14,9 +14,6 @@ import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.eclipse.xtext.xbase.compiler.StringBuilderBasedAppendable
 import org.eclipse.xtext.xbase.compiler.TypeReferenceSerializer
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
-import rs.data.api.bo.IGeneralBO
-import rs.data.api.bo.ILongBO
-import rs.data.api.bo.IStringBO
 import rs.data.api.dao.IGeneralDAO
 import rs.data.api.dao.ILongDAO
 import rs.data.api.dao.IStringDAO
@@ -26,6 +23,7 @@ import rs.dsl.data.dataDsl.Feature
 import rs.dsl.data.dataDsl.PackageDeclaration
 import java.util.Map
 import java.util.HashMap
+import rs.data.api.IDaoFactory
 
 /**
  * Generates code from your model files on save.
@@ -45,6 +43,9 @@ class DataGenerator implements IGenerator {
 			entities.put(getInterfaceName(e), e)
 			fsa.generateFile(getFilename(getInterfaceName(e)), e.compileInterface)
 			fsa.generateFile(getFilename(getDaoInterfaceName(e)), e.compileDaoInterface)
+		}
+		for (f: resource.allContents.toIterable.filter(FactoryDefinition)) {
+			fsa.generateFile(getFilename(getFactoryInterfaceName(f)), f.compileFactoryInterface);
 		}
 	}
 	
@@ -139,6 +140,8 @@ public «getTypeName(f.type, importManager)» get«f.name.toFirstUpper»();
 public void set«f.name.toFirstUpper»(«getTypeName(f.type, importManager)» «f.name»);
 '''
   	
+  	/************************** DAO Interface ******************************/
+
  	def compileDaoInterface(Entity e) ''' 
     «val importManager = new ImportManager(true)» 
     «val body = daoInterfaceBody(e, importManager)»
@@ -150,7 +153,7 @@ public void set«f.name.toFirstUpper»(«getTypeName(f.type, importManager)» «
     
     «body»
   	'''
-  	/************************** DAO Interface ******************************/
+
   	def daoInterfaceBody(Entity e, ImportManager importManager) {
   		var String superTypes = null
   		var String parameters = null
@@ -190,10 +193,40 @@ public interface «getSimpleName(getDaoInterfaceName(e))»«parameters» «IF su
 '''
    	}
   	
+ 	/********************************** Factory Interface ********************************/
   	
+	def compileFactoryInterface(FactoryDefinition f) ''' 
+    «val importManager = new ImportManager(true)» 
+    «val body = factoryInterfaceBody(f, importManager)»
+    package «getPackageName(getFactoryInterfaceName(f))»;
+    
+    «FOR i:importManager.imports»
+    import «i»;
+    «ENDFOR»
+    
+    «body»
+  	'''  	
   	
-  	
-  	
+  	def factoryInterfaceBody(FactoryDefinition f, ImportManager importManager) {
+'''
+/** 
+  * Factory Interface definition for «getSimpleName(f.name)».
+  */
+public interface «getSimpleName(getFactoryInterfaceName(f))» extends «getTypeName(f.newTypeRef(IDaoFactory), importManager)» {
+	
+	«FOR e:entities.values»
+	«IF !e.options.contains('abstract')»
+	/**
+	  * Returns the DAO for {@link «getTypeName(f.newTypeRef(getInterfaceName(e)), importManager)»}.
+	  * @return DAO implementation
+	  */
+	public «getTypeName(f.newTypeRef(getDaoInterfaceName(e)), importManager)» get«e.name»Dao();
+	
+	«ENDIF»
+	«ENDFOR»
+}
+'''
+	}  	
   	
   	
   	
