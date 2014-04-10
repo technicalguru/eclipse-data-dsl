@@ -14,7 +14,6 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link rs.dsl.data.dataDsl.Entity#getOptions <em>Options</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.Entity#getSuperTypes <em>Super Types</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.Entity#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -26,22 +25,6 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
  */
 public interface Entity extends AbstractElement
 {
-  /**
-   * Returns the value of the '<em><b>Options</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Options</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Options</em>' attribute list.
-   * @see rs.dsl.data.dataDsl.DataDslPackage#getEntity_Options()
-   * @model unique="false"
-   * @generated
-   */
-  EList<String> getOptions();
-
   /**
    * Returns the value of the '<em><b>Super Types</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.xtext.common.types.JvmParameterizedTypeReference}.

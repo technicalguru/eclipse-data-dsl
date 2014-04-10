@@ -104,13 +104,22 @@ public interface DataDslPackage extends EPackage
   int ABSTRACT_ELEMENT = 1;
 
   /**
+   * The feature id for the '<em><b>Options</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_ELEMENT__OPTIONS = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_ELEMENT__NAME = 0;
+  int ABSTRACT_ELEMENT__NAME = 1;
 
   /**
    * The number of structural features of the '<em>Abstract Element</em>' class.
@@ -119,7 +128,7 @@ public interface DataDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ABSTRACT_ELEMENT_FEATURE_COUNT = 1;
+  int ABSTRACT_ELEMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link rs.dsl.data.dataDsl.impl.FactoryDefinitionImpl <em>Factory Definition</em>}' class.
@@ -132,13 +141,22 @@ public interface DataDslPackage extends EPackage
   int FACTORY_DEFINITION = 2;
 
   /**
+   * The feature id for the '<em><b>Options</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_DEFINITION__OPTIONS = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_DEFINITION__NAME = 0;
+  int FACTORY_DEFINITION__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -147,7 +165,7 @@ public interface DataDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FACTORY_DEFINITION__ELEMENTS = 1;
+  int FACTORY_DEFINITION__ELEMENTS = 2;
 
   /**
    * The number of structural features of the '<em>Factory Definition</em>' class.
@@ -156,7 +174,7 @@ public interface DataDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FACTORY_DEFINITION_FEATURE_COUNT = 2;
+  int FACTORY_DEFINITION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link rs.dsl.data.dataDsl.impl.PackageDeclarationImpl <em>Package Declaration</em>}' class.
@@ -167,6 +185,15 @@ public interface DataDslPackage extends EPackage
    * @generated
    */
   int PACKAGE_DECLARATION = 3;
+
+  /**
+   * The feature id for the '<em><b>Options</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PACKAGE_DECLARATION__OPTIONS = ABSTRACT_ELEMENT__OPTIONS;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -206,6 +233,15 @@ public interface DataDslPackage extends EPackage
   int ENTITY = 4;
 
   /**
+   * The feature id for the '<em><b>Options</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__OPTIONS = ABSTRACT_ELEMENT__OPTIONS;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -215,22 +251,13 @@ public interface DataDslPackage extends EPackage
   int ENTITY__NAME = ABSTRACT_ELEMENT__NAME;
 
   /**
-   * The feature id for the '<em><b>Options</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ENTITY__OPTIONS = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Super Types</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENTITY__SUPER_TYPES = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
+  int ENTITY__SUPER_TYPES = ABSTRACT_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -239,7 +266,7 @@ public interface DataDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY__FEATURES = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
+  int ENTITY__FEATURES = ABSTRACT_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -248,7 +275,7 @@ public interface DataDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENTITY_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 3;
+  int ENTITY_FEATURE_COUNT = ABSTRACT_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link rs.dsl.data.dataDsl.impl.FeatureImpl <em>Feature</em>}' class.
@@ -331,6 +358,17 @@ public interface DataDslPackage extends EPackage
   EClass getAbstractElement();
 
   /**
+   * Returns the meta object for the attribute list '{@link rs.dsl.data.dataDsl.AbstractElement#getOptions <em>Options</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Options</em>'.
+   * @see rs.dsl.data.dataDsl.AbstractElement#getOptions()
+   * @see #getAbstractElement()
+   * @generated
+   */
+  EAttribute getAbstractElement_Options();
+
+  /**
    * Returns the meta object for the attribute '{@link rs.dsl.data.dataDsl.AbstractElement#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -350,6 +388,17 @@ public interface DataDslPackage extends EPackage
    * @generated
    */
   EClass getFactoryDefinition();
+
+  /**
+   * Returns the meta object for the attribute list '{@link rs.dsl.data.dataDsl.FactoryDefinition#getOptions <em>Options</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Options</em>'.
+   * @see rs.dsl.data.dataDsl.FactoryDefinition#getOptions()
+   * @see #getFactoryDefinition()
+   * @generated
+   */
+  EAttribute getFactoryDefinition_Options();
 
   /**
    * Returns the meta object for the attribute '{@link rs.dsl.data.dataDsl.FactoryDefinition#getName <em>Name</em>}'.
@@ -403,17 +452,6 @@ public interface DataDslPackage extends EPackage
    * @generated
    */
   EClass getEntity();
-
-  /**
-   * Returns the meta object for the attribute list '{@link rs.dsl.data.dataDsl.Entity#getOptions <em>Options</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Options</em>'.
-   * @see rs.dsl.data.dataDsl.Entity#getOptions()
-   * @see #getEntity()
-   * @generated
-   */
-  EAttribute getEntity_Options();
 
   /**
    * Returns the meta object for the containment reference list '{@link rs.dsl.data.dataDsl.Entity#getSuperTypes <em>Super Types</em>}'.
@@ -529,6 +567,14 @@ public interface DataDslPackage extends EPackage
     EClass ABSTRACT_ELEMENT = eINSTANCE.getAbstractElement();
 
     /**
+     * The meta object literal for the '<em><b>Options</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABSTRACT_ELEMENT__OPTIONS = eINSTANCE.getAbstractElement_Options();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -545,6 +591,14 @@ public interface DataDslPackage extends EPackage
      * @generated
      */
     EClass FACTORY_DEFINITION = eINSTANCE.getFactoryDefinition();
+
+    /**
+     * The meta object literal for the '<em><b>Options</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FACTORY_DEFINITION__OPTIONS = eINSTANCE.getFactoryDefinition_Options();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -589,14 +643,6 @@ public interface DataDslPackage extends EPackage
      * @generated
      */
     EClass ENTITY = eINSTANCE.getEntity();
-
-    /**
-     * The meta object literal for the '<em><b>Options</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ENTITY__OPTIONS = eINSTANCE.getEntity_Options();
 
     /**
      * The meta object literal for the '<em><b>Super Types</b></em>' containment reference list feature.

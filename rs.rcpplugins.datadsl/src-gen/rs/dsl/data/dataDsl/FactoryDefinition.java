@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link rs.dsl.data.dataDsl.FactoryDefinition#getOptions <em>Options</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.FactoryDefinition#getName <em>Name</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.FactoryDefinition#getElements <em>Elements</em>}</li>
  * </ul>
@@ -25,6 +26,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface FactoryDefinition extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Options</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Options</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Options</em>' attribute list.
+   * @see rs.dsl.data.dataDsl.DataDslPackage#getFactoryDefinition_Options()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getOptions();
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->

@@ -70,81 +70,97 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 	public class FactoryDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FactoryDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cFactoryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementsAbstractElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOptionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOptionsOptionParserRuleCall_0_0 = (RuleCall)cOptionsAssignment_0.eContents().get(0);
+		private final Keyword cFactoryKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cElementsAbstractElementParserRuleCall_4_0 = (RuleCall)cElementsAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//FactoryDefinition:
-		//	"factory" name=QualifiedName "{" elements+=AbstractElement* "}";
+		//	options+=Option? "factory" name=QualifiedName "{" elements+=AbstractElement* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"factory" name=QualifiedName "{" elements+=AbstractElement* "}"
+		//options+=Option? "factory" name=QualifiedName "{" elements+=AbstractElement* "}"
 		public Group getGroup() { return cGroup; }
 
+		//options+=Option?
+		public Assignment getOptionsAssignment_0() { return cOptionsAssignment_0; }
+
+		//Option
+		public RuleCall getOptionsOptionParserRuleCall_0_0() { return cOptionsOptionParserRuleCall_0_0; }
+
 		//"factory"
-		public Keyword getFactoryKeyword_0() { return cFactoryKeyword_0; }
+		public Keyword getFactoryKeyword_1() { return cFactoryKeyword_1; }
 
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_2_0() { return cNameQualifiedNameParserRuleCall_2_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
 		//elements+=AbstractElement*
-		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
+		public Assignment getElementsAssignment_4() { return cElementsAssignment_4; }
 
 		//AbstractElement
-		public RuleCall getElementsAbstractElementParserRuleCall_3_0() { return cElementsAbstractElementParserRuleCall_3_0; }
+		public RuleCall getElementsAbstractElementParserRuleCall_4_0() { return cElementsAbstractElementParserRuleCall_4_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
 	public class PackageDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementsAbstractElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOptionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOptionsOptionParserRuleCall_0_0 = (RuleCall)cOptionsAssignment_0.eContents().get(0);
+		private final Keyword cPackageKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cElementsAbstractElementParserRuleCall_4_0 = (RuleCall)cElementsAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//PackageDeclaration:
-		//	"package" name=QualifiedName "{" elements+=AbstractElement* "}";
+		//	options+=Option? "package" name=QualifiedName "{" elements+=AbstractElement* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"package" name=QualifiedName "{" elements+=AbstractElement* "}"
+		//options+=Option? "package" name=QualifiedName "{" elements+=AbstractElement* "}"
 		public Group getGroup() { return cGroup; }
 
+		//options+=Option?
+		public Assignment getOptionsAssignment_0() { return cOptionsAssignment_0; }
+
+		//Option
+		public RuleCall getOptionsOptionParserRuleCall_0_0() { return cOptionsOptionParserRuleCall_0_0; }
+
 		//"package"
-		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+		public Keyword getPackageKeyword_1() { return cPackageKeyword_1; }
 
 		//name=QualifiedName
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 
 		//QualifiedName
-		public RuleCall getNameQualifiedNameParserRuleCall_1_0() { return cNameQualifiedNameParserRuleCall_1_0; }
+		public RuleCall getNameQualifiedNameParserRuleCall_2_0() { return cNameQualifiedNameParserRuleCall_2_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
 		//elements+=AbstractElement*
-		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
+		public Assignment getElementsAssignment_4() { return cElementsAssignment_4; }
 
 		//AbstractElement
-		public RuleCall getElementsAbstractElementParserRuleCall_3_0() { return cElementsAbstractElementParserRuleCall_3_0; }
+		public RuleCall getElementsAbstractElementParserRuleCall_4_0() { return cElementsAbstractElementParserRuleCall_4_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
 	public class EntityElements extends AbstractParserRuleElementFinder {
@@ -267,7 +283,9 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class OptionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Option");
-		private final Keyword cAbstractKeyword = (Keyword)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cAbstractKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cHibernateKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		////
 		////
@@ -330,11 +348,17 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 		////	(many ?= 'many')? name = ID ':' type = [Type | QualifiedName] (description=Description)? ';'
 		////;
 		//Option:
-		//	"abstract";
+		//	"abstract" | "hibernate";
 		public ParserRule getRule() { return rule; }
 
+		//"abstract" | "hibernate"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//"abstract"
-		public Keyword getAbstractKeyword() { return cAbstractKeyword; }
+		public Keyword getAbstractKeyword_0() { return cAbstractKeyword_0; }
+
+		//"hibernate"
+		public Keyword getHibernateKeyword_1() { return cHibernateKeyword_1; }
 	}
 	
 	
@@ -405,7 +429,7 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FactoryDefinition:
-	//	"factory" name=QualifiedName "{" elements+=AbstractElement* "}";
+	//	options+=Option? "factory" name=QualifiedName "{" elements+=AbstractElement* "}";
 	public FactoryDefinitionElements getFactoryDefinitionAccess() {
 		return (pFactoryDefinition != null) ? pFactoryDefinition : (pFactoryDefinition = new FactoryDefinitionElements());
 	}
@@ -415,7 +439,7 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PackageDeclaration:
-	//	"package" name=QualifiedName "{" elements+=AbstractElement* "}";
+	//	options+=Option? "package" name=QualifiedName "{" elements+=AbstractElement* "}";
 	public PackageDeclarationElements getPackageDeclarationAccess() {
 		return (pPackageDeclaration != null) ? pPackageDeclaration : (pPackageDeclaration = new PackageDeclarationElements());
 	}
@@ -506,7 +530,7 @@ public class DataGrammarAccess extends AbstractGrammarElementFinder {
 	////	(many ?= 'many')? name = ID ':' type = [Type | QualifiedName] (description=Description)? ';'
 	////;
 	//Option:
-	//	"abstract";
+	//	"abstract" | "hibernate";
 	public OptionElements getOptionAccess() {
 		return (pOption != null) ? pOption : (pOption = new OptionElements());
 	}

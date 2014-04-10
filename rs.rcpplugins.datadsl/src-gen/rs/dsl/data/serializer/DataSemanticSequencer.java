@@ -1064,7 +1064,7 @@ public class DataSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=QualifiedName elements+=AbstractElement*)
+	 *     (options+=Option? name=QualifiedName elements+=AbstractElement*)
 	 */
 	protected void sequence_FactoryDefinition(EObject context, FactoryDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1092,7 +1092,7 @@ public class DataSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (name=QualifiedName elements+=AbstractElement*)
+	 *     (options+=Option? name=QualifiedName elements+=AbstractElement*)
 	 */
 	protected void sequence_PackageDeclaration(EObject context, PackageDeclaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

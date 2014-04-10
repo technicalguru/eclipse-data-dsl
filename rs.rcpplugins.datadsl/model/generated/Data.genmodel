@@ -12,9 +12,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Domainmodel/factories"/>
     </genClasses>
     <genClasses ecoreClass="Data.ecore#//AbstractElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//AbstractElement/options"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//AbstractElement/name"/>
     </genClasses>
     <genClasses ecoreClass="Data.ecore#//FactoryDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//FactoryDefinition/options"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//FactoryDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//FactoryDefinition/elements"/>
     </genClasses>
@@ -22,7 +24,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//PackageDeclaration/elements"/>
     </genClasses>
     <genClasses ecoreClass="Data.ecore#//Entity">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Data.ecore#//Entity/options"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Entity/superTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Data.ecore#//Entity/features"/>
     </genClasses>

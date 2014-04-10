@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -28,7 +27,6 @@ import rs.dsl.data.dataDsl.Feature;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link rs.dsl.data.dataDsl.impl.EntityImpl#getOptions <em>Options</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.impl.EntityImpl#getSuperTypes <em>Super Types</em>}</li>
  *   <li>{@link rs.dsl.data.dataDsl.impl.EntityImpl#getFeatures <em>Features</em>}</li>
  * </ul>
@@ -38,16 +36,6 @@ import rs.dsl.data.dataDsl.Feature;
  */
 public class EntityImpl extends AbstractElementImpl implements Entity
 {
-  /**
-   * The cached value of the '{@link #getOptions() <em>Options</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOptions()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> options;
-
   /**
    * The cached value of the '{@link #getSuperTypes() <em>Super Types</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -87,20 +75,6 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   protected EClass eStaticClass()
   {
     return DataDslPackage.Literals.ENTITY;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<String> getOptions()
-  {
-    if (options == null)
-    {
-      options = new EDataTypeEList<String>(String.class, this, DataDslPackage.ENTITY__OPTIONS);
-    }
-    return options;
   }
 
   /**
@@ -159,8 +133,6 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   {
     switch (featureID)
     {
-      case DataDslPackage.ENTITY__OPTIONS:
-        return getOptions();
       case DataDslPackage.ENTITY__SUPER_TYPES:
         return getSuperTypes();
       case DataDslPackage.ENTITY__FEATURES:
@@ -180,10 +152,6 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   {
     switch (featureID)
     {
-      case DataDslPackage.ENTITY__OPTIONS:
-        getOptions().clear();
-        getOptions().addAll((Collection<? extends String>)newValue);
-        return;
       case DataDslPackage.ENTITY__SUPER_TYPES:
         getSuperTypes().clear();
         getSuperTypes().addAll((Collection<? extends JvmParameterizedTypeReference>)newValue);
@@ -206,9 +174,6 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   {
     switch (featureID)
     {
-      case DataDslPackage.ENTITY__OPTIONS:
-        getOptions().clear();
-        return;
       case DataDslPackage.ENTITY__SUPER_TYPES:
         getSuperTypes().clear();
         return;
@@ -229,31 +194,12 @@ public class EntityImpl extends AbstractElementImpl implements Entity
   {
     switch (featureID)
     {
-      case DataDslPackage.ENTITY__OPTIONS:
-        return options != null && !options.isEmpty();
       case DataDslPackage.ENTITY__SUPER_TYPES:
         return superTypes != null && !superTypes.isEmpty();
       case DataDslPackage.ENTITY__FEATURES:
         return features != null && !features.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (options: ");
-    result.append(options);
-    result.append(')');
-    return result.toString();
   }
 
 } //EntityImpl

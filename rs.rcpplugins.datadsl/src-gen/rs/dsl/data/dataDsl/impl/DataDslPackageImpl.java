@@ -183,9 +183,19 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAbstractElement_Name()
+  public EAttribute getAbstractElement_Options()
   {
     return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAbstractElement_Name()
+  {
+    return (EAttribute)abstractElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -203,7 +213,7 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFactoryDefinition_Name()
+  public EAttribute getFactoryDefinition_Options()
   {
     return (EAttribute)factoryDefinitionEClass.getEStructuralFeatures().get(0);
   }
@@ -213,9 +223,19 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFactoryDefinition_Name()
+  {
+    return (EAttribute)factoryDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getFactoryDefinition_Elements()
   {
-    return (EReference)factoryDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EReference)factoryDefinitionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -253,19 +273,9 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEntity_Options()
-  {
-    return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getEntity_SuperTypes()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+    return (EReference)entityEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -275,7 +285,7 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
    */
   public EReference getEntity_Features()
   {
-    return (EReference)entityEClass.getEStructuralFeatures().get(2);
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -343,9 +353,11 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
     createEReference(domainmodelEClass, DOMAINMODEL__FACTORIES);
 
     abstractElementEClass = createEClass(ABSTRACT_ELEMENT);
+    createEAttribute(abstractElementEClass, ABSTRACT_ELEMENT__OPTIONS);
     createEAttribute(abstractElementEClass, ABSTRACT_ELEMENT__NAME);
 
     factoryDefinitionEClass = createEClass(FACTORY_DEFINITION);
+    createEAttribute(factoryDefinitionEClass, FACTORY_DEFINITION__OPTIONS);
     createEAttribute(factoryDefinitionEClass, FACTORY_DEFINITION__NAME);
     createEReference(factoryDefinitionEClass, FACTORY_DEFINITION__ELEMENTS);
 
@@ -353,7 +365,6 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
     createEReference(packageDeclarationEClass, PACKAGE_DECLARATION__ELEMENTS);
 
     entityEClass = createEClass(ENTITY);
-    createEAttribute(entityEClass, ENTITY__OPTIONS);
     createEReference(entityEClass, ENTITY__SUPER_TYPES);
     createEReference(entityEClass, ENTITY__FEATURES);
 
@@ -404,9 +415,11 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
     initEReference(getDomainmodel_Factories(), this.getFactoryDefinition(), null, "factories", null, 0, -1, Domainmodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abstractElementEClass, AbstractElement.class, "AbstractElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAbstractElement_Options(), ecorePackage.getEString(), "options", null, 0, -1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAbstractElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(factoryDefinitionEClass, FactoryDefinition.class, "FactoryDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFactoryDefinition_Options(), ecorePackage.getEString(), "options", null, 0, -1, FactoryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFactoryDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, FactoryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFactoryDefinition_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, FactoryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -414,7 +427,6 @@ public class DataDslPackageImpl extends EPackageImpl implements DataDslPackage
     initEReference(getPackageDeclaration_Elements(), this.getAbstractElement(), null, "elements", null, 0, -1, PackageDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEntity_Options(), ecorePackage.getEString(), "options", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_SuperTypes(), theTypesPackage.getJvmParameterizedTypeReference(), null, "superTypes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEntity_Features(), this.getFeature(), null, "features", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

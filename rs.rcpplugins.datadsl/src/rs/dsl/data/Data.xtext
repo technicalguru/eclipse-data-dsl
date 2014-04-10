@@ -14,13 +14,13 @@ AbstractElement:
 ;
 
 FactoryDefinition:
-	'factory' name = QualifiedName '{'
+	(options += Option)? 'factory' name = QualifiedName '{'
 		(elements += AbstractElement)*
 	'}'
 ;
 
 PackageDeclaration:
-	'package' name = QualifiedName '{'
+	(options += Option)? 'package' name = QualifiedName '{'
 		(elements += AbstractElement)*
 	'}'
 ;
@@ -36,7 +36,7 @@ Feature:
 ; 
 
 Option:
-	'abstract'
+	'abstract' | 'hibernate'
 ;
 
 
