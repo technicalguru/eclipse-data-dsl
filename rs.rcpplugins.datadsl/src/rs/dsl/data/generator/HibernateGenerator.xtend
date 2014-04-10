@@ -25,6 +25,7 @@ import rs.data.hibernate.bo.AbstractHibernateStringBO
 import rs.data.hibernate.dao.AbstractHibernateLongDAO
 import rs.data.hibernate.dao.AbstractHibernateDAO
 import rs.data.hibernate.dao.AbstractHibernateStringDAO
+import javax.annotation.Generated
 
 /**
  * Generates code from your model files on save.
@@ -95,6 +96,7 @@ class HibernateGenerator extends AbstractDataGenerator {
   * DTO implementation for {@link «getInterfaceName(e)»}.
   * <p>«e.documentation»</p> 
   */
+@«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public «abstractOption»class «getSimpleName(getDtoName(e))»«parameter»«superType» {
 
 	/** Serial UID */
@@ -172,6 +174,8 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
   		var String parameters = null
   		var String abstractOption = "";
   		var String constructorArg = getTypeName(e.newTypeRef(getDtoName(e)), importManager);
+  		var boolean k = false
+  		var boolean t = false
   		if (e.options.contains("abstract")) abstractOption = "abstract "
   		if (e.superTypes != null) {
   			for (s : e.superTypes) {
@@ -180,6 +184,7 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						superType = getTypeName(e.newTypeRef(AbstractHibernateLongBO, e.newTypeRef('T')), importManager)
 						parameters = addParameter(parameters, "T extends "+getTypeName(e.newTypeRef(getDtoName(e)), importManager))
 						constructorArg = "T"
+						t = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateLongBO, e.newTypeRef(getDtoName(e))), importManager)
 					}
@@ -191,6 +196,8 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						parameters = addParameter(parameters, "T extends "+getTypeName(e.newTypeRef(getDtoName(e), e.newTypeRef("K")), importManager))
 						ifSuperType = getTypeName(e.newTypeRef(getInterfaceName(e), e.newTypeRef("K")), importManager);
 						constructorArg = "T"
+						k = true
+						t = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateBO, e.newTypeRef(Serializable), e.newTypeRef(getDtoName(e))), importManager)
 						ifSuperType = getTypeName(e.newTypeRef(getInterfaceName(e)), importManager);
@@ -200,6 +207,7 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						superType = getTypeName(e.newTypeRef(AbstractHibernateStringBO, e.newTypeRef('T')), importManager)
 						parameters = addParameter(parameters, "T extends "+getTypeName(e.newTypeRef(getDtoName(e)), importManager))
 						constructorArg = "T"
+						t = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateStringBO, e.newTypeRef(getDtoName(e))), importManager)
 					}
@@ -217,7 +225,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 /** 
   * BO Hibernate implementation for {@link «e.name»}.
   * <p>«e.documentation»</p> 
-  */
+«IF k»  * @param <K> entity key class
+«ENDIF»«IF t»  * @param <T> transfer object class for entity
+«ENDIF»  */
+@«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public «abstractOption»class «getSimpleName(getImplementationName(e))»«parameters»«superType» implements «ifSuperType» {
 
 	/** Serial UID */
@@ -285,6 +296,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
   		var String ifSuperType = null
   		var String parameters = null
   		var String abstractOption = "";
+  		var boolean k = false
+  		var boolean t = false
+  		var boolean c = false
+  		var boolean b = false
   		if (e.options.contains("abstract")) abstractOption = "abstract "
   		if (e.superTypes != null) {
   			for (s : e.superTypes) {
@@ -295,6 +310,9 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						parameters = addParameter(parameters, "B extends "+getTypeName(e.newTypeRef(getImplementationName(e), e.newTypeRef('T')), importManager))
 						parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
 						ifSuperType = getTypeName(e.newTypeRef(getDaoInterfaceName(e), e.newTypeRef("C")), importManager);
+						t = true
+						b = true
+						c = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateLongDAO, e.newTypeRef(getDtoName(e)), e.newTypeRef(getImplementationName(e)), e.newTypeRef(getInterfaceName(e))), importManager)
 						ifSuperType = getTypeName(e.newTypeRef(getDaoInterfaceName(e), e.newTypeRef("C")), importManager);
@@ -307,6 +325,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						parameters = addParameter(parameters, "B extends "+getTypeName(e.newTypeRef(getImplementationName(e), e.newTypeRef("K"), e.newTypeRef('T')), importManager))
 						parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e), e.newTypeRef("K")), importManager))
 						ifSuperType = getTypeName(e.newTypeRef(getDaoInterfaceName(e), e.newTypeRef("K"), e.newTypeRef("C")), importManager);
+						k = true
+						t = true
+						b = true
+						c = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateDAO, e.newTypeRef(Serializable), e.newTypeRef(getDtoName(e)), e.newTypeRef(getImplementationName(e)), e.newTypeRef(getInterfaceName(e))), importManager)
 						ifSuperType = getTypeName(e.newTypeRef(getDaoInterfaceName(e)), importManager);
@@ -317,6 +339,9 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 						parameters = addParameter(parameters, "T extends "+getTypeName(e.newTypeRef(getDtoName(e)), importManager))
 						parameters = addParameter(parameters, "B extends "+getTypeName(e.newTypeRef(getImplementationName(e), e.newTypeRef('T')), importManager))
 						parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
+						t = true
+						b = true
+						c = true
 					} else {
 						superType = getTypeName(e.newTypeRef(AbstractHibernateStringDAO, e.newTypeRef(getDtoName(e)), e.newTypeRef(getImplementationName(e)), e.newTypeRef(getInterfaceName(e))), importManager)
 					}
@@ -333,7 +358,12 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 '''
 /** 
   * DAO Hibernate implementation for {@link «e.name»}.
-  */
+«IF k»  * @param <K> entity key class
+«ENDIF»«IF t»  * @param <T> transfer object class for entity
+«ENDIF»«IF b»  * @param <B> entity implementation class
+«ENDIF»«IF c»  * @param <C> entity interface class
+«ENDIF»  */
+@«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public «abstractOption»class «getSimpleName(getDaoImplementationName(e))»«parameters»«superType» implements «ifSuperType» {
 }
 '''
@@ -358,6 +388,7 @@ public «abstractOption»class «getSimpleName(getDaoImplementationName(e))»«p
 /** 
   * Factory implementation for «getSimpleName(f.name)».
   */
+@«getTypeName(f.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public class «getSimpleName(getFactoryImplementationName(f))» extends «getTypeName(f.newTypeRef(AbstractDaoFactory), importManager)» implements «getTypeName(f.newTypeRef(getFactoryInterfaceName(f)), importManager)» {
 	
 	«FOR e:entities.values»

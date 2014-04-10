@@ -18,6 +18,7 @@ import rs.data.api.dao.IStringDAO
 import rs.dsl.data.dataDsl.Entity
 import rs.dsl.data.dataDsl.FactoryDefinition
 import rs.dsl.data.dataDsl.Feature
+import javax.annotation.Generated
 
 /**
  * Generates code from your model files on save.
@@ -68,9 +69,10 @@ class InterfaceGenerator extends AbstractDataGenerator {
   		}
 '''
 /** 
-  * BO Interface definition for «e.name».
+  * BO interface for «e.name».
   * <p>«e.documentation»</p> 
   */
+@«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public interface «getSimpleName(getInterfaceName(e))» «IF superTypes != null »extends «superTypes» «ENDIF»{
 	«FOR f:e.features»
 	«compileInterfaceConstant(f, importManager)»
@@ -128,22 +130,28 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
   	def daoInterfaceBody(Entity e, ImportManager importManager) {
   		var String superTypes = null
   		var String parameters = null
+  		var boolean k = false
+  		var boolean c = false
   		if (e.superTypes != null) {
   			var isFirst = true
   			for (s : e.superTypes) {
   				var String typeName = null 
 				if (s.identifier == 'rs.data.api.bo.ILongBO') {
-					parameters = addParameter(parameters, "I extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
-					typeName = getTypeName(e.newTypeRef(ILongDAO, e.newTypeRef('I')), importManager)
+					parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
+					typeName = getTypeName(e.newTypeRef(ILongDAO, e.newTypeRef('C')), importManager)
+					c = true
 				} else if (s.identifier == 'rs.data.api.bo.IGeneralBO') {
 					parameters = addParameter(parameters, "K extends "+getTypeName(e.newTypeRef(Serializable), importManager))
-					parameters = addParameter(parameters, "I extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
-					typeName = getTypeName(e.newTypeRef(IGeneralDAO), importManager)+"<K,I>"
+					parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
+					typeName = getTypeName(e.newTypeRef(IGeneralDAO), importManager)+"<K,C>"
+					k = true
+					c = true
 				} else if (s.identifier == 'rs.data.api.bo.IStringBO') {
-					parameters = addParameter(parameters, "I extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
-					typeName = getTypeName(e.newTypeRef(IStringDAO), importManager)+"<I>"
+					parameters = addParameter(parameters, "C extends "+getTypeName(e.newTypeRef(getInterfaceName(e)), importManager))
+					typeName = getTypeName(e.newTypeRef(IStringDAO), importManager)+"<C>"
+					c = true
 				} else if (entities.containsKey(s.identifier)) {
-  						typeName = getTypeName(e.newTypeRef(getDaoInterfaceName(entities.get(s.identifier)), e.newTypeRef(getInterfaceName(e)) ), importManager)
+  					typeName = getTypeName(e.newTypeRef(getDaoInterfaceName(entities.get(s.identifier)), e.newTypeRef(getInterfaceName(e)) ), importManager)
 				}
   				if (typeName != null) {
  	  				if (!isFirst) superTypes = superTypes + ', '
@@ -157,8 +165,11 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
   		else parameters = ''
 '''
 /** 
-  * DAO Interface definition for {@link «e.name»}.
-  */
+  * DAO interface for {@link «e.name»}.
+«IF k»  * @param <K> entity key class
+«ENDIF»«IF c»  * @param <C> entity interface class
+«ENDIF»  */
+@«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public interface «getSimpleName(getDaoInterfaceName(e))»«parameters» «IF superTypes != null »extends «superTypes» «ENDIF»{
 }
 '''
@@ -181,8 +192,9 @@ public interface «getSimpleName(getDaoInterfaceName(e))»«parameters» «IF su
   	def factoryInterfaceBody(FactoryDefinition f, ImportManager importManager) {
 '''
 /** 
-  * Factory Interface definition for «getSimpleName(f.name)».
+  * Factory interface for «getSimpleName(f.name)».
   */
+@«getTypeName(f.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public interface «getSimpleName(getFactoryInterfaceName(f))» extends «getTypeName(f.newTypeRef(IDaoFactory), importManager)» {
 	
 	«FOR e:entities.values»
