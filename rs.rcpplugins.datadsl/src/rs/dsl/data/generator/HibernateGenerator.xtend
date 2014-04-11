@@ -52,15 +52,19 @@ class HibernateGenerator extends AbstractDataGenerator {
 	/**************************** DTO Implementation *******************************/
 	
 	def compileDto(Entity e) ''' 
-    «val importManager = new ImportManager(true)» 
-    «val body = dtoBody(e, importManager)»
-    package «getPackageName(getDtoName(e))»;
-    
-    «FOR i:importManager.imports»
-    import «i»;
+	«val importManager = new ImportManager(true)» 
+	«val body = dtoBody(e, importManager)»
+	package «getPackageName(getDtoName(e))»;
+	
+	«FOR i:importManager.imports»
+	import «i»;
     «ENDFOR»
-    
-    «body»
+
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'dto.imports')») ENABLED START
+	// Put your imports here
+	// PROTECTED REGION END
+
+	«body»
   	'''
   
   	def dtoBody(Entity e, ImportManager importManager) {
@@ -167,6 +171,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSet
     «val body = implementationBody(e, importManager)»
     package «getPackageName(getImplementationName(e))»;
     
+    // PROTECTED REGION ID(«getProtectedRegionName(e, 'impl.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «FOR i:importManager.imports»
     import «i»;
     «ENDFOR»
@@ -310,6 +318,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSet
     import «i»;
     «ENDFOR»
     
+    // PROTECTED REGION ID(«getProtectedRegionName(e, 'dao.impl.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «body»
   	'''
 

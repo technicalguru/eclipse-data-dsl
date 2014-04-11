@@ -55,6 +55,10 @@ class InterfaceGenerator extends AbstractDataGenerator {
     import «i»;
     «ENDFOR»
     
+    // PROTECTED REGION ID(«getProtectedRegionName(e, 'interface.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «body»
   	'''
   
@@ -130,6 +134,10 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSet
     import «i»;
     «ENDFOR»
     
+    // PROTECTED REGION ID(«getProtectedRegionName(e, 'dao.interface.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «body»
   	'''
 
@@ -197,6 +205,10 @@ public interface «getSimpleName(getDaoInterfaceName(e))»«parameters» «IF su
     import «i»;
     «ENDFOR»
     
+    // PROTECTED REGION ID(«getProtectedRegionName(f, 'factory.interface.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «body»
   	'''  	
   	
@@ -237,6 +249,10 @@ public interface «getSimpleName(getFactoryInterfaceName(f))» extends «getType
     import «i»;
     «ENDFOR»
     
+    // PROTECTED REGION ID(«getProtectedRegionName(f, 'factory.impl.imports')») ENABLED START
+    // Put your imports here
+    // PROTECTED REGION END
+
     «body»
   	'''  	
   	
