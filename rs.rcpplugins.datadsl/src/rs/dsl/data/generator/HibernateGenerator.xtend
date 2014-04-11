@@ -5,27 +5,26 @@ package rs.dsl.data.generator
 
 import com.google.inject.Inject
 import java.io.Serializable
+import java.util.HashMap
+import java.util.Map
+import javax.annotation.Generated
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.xbase.compiler.ImportManager
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import rs.data.hibernate.bo.AbstractHibernateBO
+import rs.data.hibernate.bo.AbstractHibernateLongBO
+import rs.data.hibernate.bo.AbstractHibernateStringBO
+import rs.data.hibernate.dao.AbstractHibernateDAO
+import rs.data.hibernate.dao.AbstractHibernateLongDAO
+import rs.data.hibernate.dao.AbstractHibernateStringDAO
+import rs.data.impl.dto.GeneralDTO
+import rs.data.impl.dto.LongDTO
+import rs.data.impl.dto.StringDTO
 import rs.dsl.data.dataDsl.Entity
 import rs.dsl.data.dataDsl.FactoryDefinition
 import rs.dsl.data.dataDsl.Feature
 import rs.dsl.data.dataDsl.PackageDeclaration
-import java.util.Map
-import java.util.HashMap
-import rs.data.impl.AbstractDaoFactory
-import rs.data.impl.dto.LongDTO
-import rs.data.impl.dto.GeneralDTO
-import rs.data.impl.dto.StringDTO
-import rs.data.hibernate.bo.AbstractHibernateBO
-import rs.data.hibernate.bo.AbstractHibernateLongBO
-import rs.data.hibernate.bo.AbstractHibernateStringBO
-import rs.data.hibernate.dao.AbstractHibernateLongDAO
-import rs.data.hibernate.dao.AbstractHibernateDAO
-import rs.data.hibernate.dao.AbstractHibernateStringDAO
-import javax.annotation.Generated
 
 /**
  * Generates code from your model files on save.
@@ -46,11 +45,6 @@ class HibernateGenerator extends AbstractDataGenerator {
 				fsa.generateFile(getFilename(getImplementationName(e)), e.compileImplementation)
 				fsa.generateFile(getFilename(getDaoImplementationName(e)), e.compileDaoImplementation)
 				// TODO: HBM files
-			}
-		}
-		for (f: resource.allContents.toIterable.filter(FactoryDefinition)) {
-			if (isHibernate(f)) {
-				fsa.generateFile(getFilename(getFactoryImplementationName(f)), f.compileFactoryImplementation)
 			}
 		}
 	}
@@ -110,12 +104,18 @@ public «abstractOption»class «getSimpleName(getDtoName(e))»«parameter»«su
 	 * Constructor.
 	 */
 	public «getSimpleName(getDtoName(e))»() {
+		// PROTECTED REGION ID(«getProtectedRegionName(e, 'dto.constructor')») ENABLED START
+		// Add your own implementation here
+		// PROTECTED REGION END
 	}
 	
 	«FOR f:e.features»
 	«compileDtoMethods(f, importManager)»
 	«ENDFOR»
 	
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'dto')») ENABLED START
+	// Add your own implementations here
+	// PROTECTED REGION END
 }
 '''
 	}
@@ -127,7 +127,7 @@ public «abstractOption»class «getSimpleName(getDtoName(e))»«parameter»«su
   * @see {@link #«getGetterName(f)»()}
   * @see {@link #«getSetterName(f)»(«getTypeName(f.type, importManager)»)}
   */
-private «getTypeName(f.type, importManager)» «f.name»;
+private «getTypeName(f.type, importManager)» «getSetterArgumentName(f.name)»;
 '''
 
     def compileDtoMethods(Feature f, ImportManager importManager) 
@@ -139,7 +139,10 @@ private «getTypeName(f.type, importManager)» «f.name»;
   * @see {@link #«getSetterName(f)»(«getTypeName(f.type, importManager)»)}
   */
 public «getTypeName(f.type, importManager)» «getGetterName(f)»() {
-	return «f.name»;
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'dto.getter')») ENABLED START
+	// Add your own implementation here
+	return «getSetterArgumentName(f.name)»;
+	// PROTECTED REGION END
 }
 
 /** 
@@ -148,8 +151,11 @@ public «getTypeName(f.type, importManager)» «getGetterName(f)»() {
   * @param «f.name» - the new value to set
   * @see {@link #«getGetterName(f)»()}
   */
-public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name») {
-	this.«f.name» = «f.name»;
+public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSetterArgumentName(f.name)») {
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'dto.setter')») ENABLED START
+	// Add your own implementation here
+	this.«getSetterArgumentName(f.name)» = «getSetterArgumentName(f.name)»;
+	// PROTECTED REGION END
 }
 '''
   	
@@ -238,7 +244,10 @@ public «abstractOption»class «getSimpleName(getImplementationName(e))»«para
 	 * Constructor.
 	 */
 	public «getSimpleName(getImplementationName(e))»() {
+		// PROTECTED REGION ID(«getProtectedRegionName(e, 'impl.constructor.null')») ENABLED START
+		// Add your own implementation here
 		this(null);
+		// PROTECTED REGION END
 	}
 
 	/**
@@ -246,12 +255,19 @@ public «abstractOption»class «getSimpleName(getImplementationName(e))»«para
 	 * @param dto the transfer object to be used underneath
 	 */
 	public «getSimpleName(getImplementationName(e))»(«constructorArg» dto) {
+		// PROTECTED REGION ID(«getProtectedRegionName(e, 'impl.constructor.dto')») ENABLED START
+		// Add your own implementation here
 		super(dto);
+		// PROTECTED REGION END
 	}
 
 	«FOR f:e.features»
 	«compileImplementationMethods(f, importManager)»
 	«ENDFOR»
+
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'impl')») ENABLED START
+	// Add your own implementations here
+	// PROTECTED REGION END
 }
 '''
    	}
@@ -263,17 +279,23 @@ public «abstractOption»class «getSimpleName(getImplementationName(e))»«para
   */
 @Override
 public «getTypeName(f.type, importManager)» «getGetterName(f)»() {
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'impl.getter')») ENABLED START
+	// Add your own implementation here
 	return getTransferObject().«getGetterName(f)»();
+	// PROTECTED REGION END
 }
 
 /** 
   * {@inheritDoc}
   */
 @Override
-public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name») {
+public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSetterArgumentName(f.name)») {
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'impl.setter')») ENABLED START
+	// Add your own implementation here
 	«getTypeName(f.type, importManager)» oldValue = «getGetterName(f)»();
-	getTransferObject().«getSetterName(f)»(«f.name»);
-	firePropertyChange(«constantName(f.name)», oldValue, «f.name»);
+	getTransferObject().«getSetterName(f)»(«getSetterArgumentName(f.name)»);
+	firePropertyChange(«constantName(f.name)», oldValue, «getSetterArgumentName(f.name)»);
+	// PROTECTED REGION END
 }
 '''
   	
@@ -365,52 +387,21 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 «ENDIF»  */
 @«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public «abstractOption»class «getSimpleName(getDaoImplementationName(e))»«parameters»«superType» implements «ifSuperType» {
+
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'dao.impl')») ENABLED START
+	// Add your own implementations here
+	// PROTECTED REGION END
+
 }
 '''
    	}
   	
- 	/********************************** Factory Implementation ********************************/
-  	
-	def compileFactoryImplementation(FactoryDefinition f) ''' 
-    «val importManager = new ImportManager(true)» 
-    «val body = factoryImplementationBody(f, importManager)»
-    package «getPackageName(getFactoryImplementationName(f))»;
-    
-    «FOR i:importManager.imports»
-    import «i»;
-    «ENDFOR»
-    
-    «body»
-  	'''  	
-  	
-  	def factoryImplementationBody(FactoryDefinition f, ImportManager importManager) {
-'''
-/** 
-  * Factory implementation for «getSimpleName(f.name)».
-  */
-@«getTypeName(f.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
-public class «getSimpleName(getFactoryImplementationName(f))» extends «getTypeName(f.newTypeRef(AbstractDaoFactory), importManager)» implements «getTypeName(f.newTypeRef(getFactoryInterfaceName(f)), importManager)» {
-	
-	«FOR e:entities.values»
-	«IF !e.options.contains('abstract')»
-	/**
-	  * {@inheritDoc}
-	  */
-	@Override
-	public «getTypeName(f.newTypeRef(getDaoInterfaceName(e)), importManager)» get«e.name»Dao() {
-		return getDao(«getTypeName(f.newTypeRef(getDaoInterfaceName(e)), importManager)».class);
-	}
-	«ENDIF»
-	«ENDFOR»
-}
-'''
-	}  	
-  	
-  	
-  	
+   	
   	/**********************************Utilities ********************************/
   	
 	def dispatch boolean isHibernate(Entity e) {
+		if (e.options.contains('hibernate')) return true
+		
 		var container = e.eContainer
 		switch container {
 			Entity : return isHibernate(container)
@@ -425,6 +416,8 @@ public class «getSimpleName(getFactoryImplementationName(f))» extends «getTyp
 	}
 	
 	def dispatch boolean isHibernate(PackageDeclaration p) {
+		if (p.options.contains('hibernate')) return true
+		
 		var container = p.eContainer
 		switch container {
 			PackageDeclaration : return isHibernate(container)

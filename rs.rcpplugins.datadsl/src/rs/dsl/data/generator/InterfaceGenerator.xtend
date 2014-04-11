@@ -19,6 +19,7 @@ import rs.dsl.data.dataDsl.Entity
 import rs.dsl.data.dataDsl.FactoryDefinition
 import rs.dsl.data.dataDsl.Feature
 import javax.annotation.Generated
+import rs.data.impl.AbstractDaoFactory
 
 /**
  * Generates code from your model files on save.
@@ -39,6 +40,7 @@ class InterfaceGenerator extends AbstractDataGenerator {
 		}
 		for (f: resource.allContents.toIterable.filter(FactoryDefinition)) {
 			fsa.generateFile(getFilename(getFactoryInterfaceName(f)), f.compileFactoryInterface);
+			fsa.generateFile(getFilename(getFactoryImplementationName(f)), f.compileFactoryImplementation)
 		}
 	}
 	
@@ -80,6 +82,10 @@ public interface «getSimpleName(getInterfaceName(e))» «IF superTypes != null 
 	«FOR f:e.features»
 	«compileInterfaceMethods(f, importManager)»
 	«ENDFOR»
+	
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'interface')») ENABLED START
+	// Add your own interface definitions here
+	// PROTECTED REGION END
 }
 '''
    	}
@@ -110,7 +116,7 @@ public «getTypeName(f.type, importManager)» «getGetterName(f)»();
   * @param «f.name» - the new value to set
   * @see {@link #«getGetterName(f)»()}
   */
-public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name»);
+public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «getSetterArgumentName(f.name)»);
 '''
   	
   	/************************** DAO Interface ******************************/
@@ -171,6 +177,11 @@ public void «getSetterName(f)»(«getTypeName(f.type, importManager)» «f.name
 «ENDIF»  */
 @«getTypeName(e.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
 public interface «getSimpleName(getDaoInterfaceName(e))»«parameters» «IF superTypes != null »extends «superTypes» «ENDIF»{
+
+	// PROTECTED REGION ID(«getProtectedRegionName(e, 'dao.interface')») ENABLED START
+	// Add your own interface definitions here
+	// PROTECTED REGION END
+
 }
 '''
    	}
@@ -207,9 +218,60 @@ public interface «getSimpleName(getFactoryInterfaceName(f))» extends «getType
 	
 	«ENDIF»
 	«ENDFOR»
+
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'factory.interface')») ENABLED START
+	// Add your own interface definitions here
+	// PROTECTED REGION END
 }
 '''
 	}  	
+  	
+	/********************************** Factory Implementation ********************************/
+  	
+	def compileFactoryImplementation(FactoryDefinition f) ''' 
+    «val importManager = new ImportManager(true)» 
+    «val body = factoryImplementationBody(f, importManager)»
+    package «getPackageName(getFactoryImplementationName(f))»;
+    
+    «FOR i:importManager.imports»
+    import «i»;
+    «ENDFOR»
+    
+    «body»
+  	'''  	
+  	
+  	def factoryImplementationBody(FactoryDefinition f, ImportManager importManager) {
+'''
+/** 
+  * Factory implementation for «getSimpleName(f.name)».
+  */
+@«getTypeName(f.newTypeRef(Generated), importManager)»("«getClass().simpleName»")
+public class «getSimpleName(getFactoryImplementationName(f))» extends «getTypeName(f.newTypeRef(AbstractDaoFactory), importManager)» implements «getTypeName(f.newTypeRef(getFactoryInterfaceName(f)), importManager)» {
+	
+	«FOR e:entities.values»
+	«IF !e.options.contains('abstract')»
+	/**
+	  * {@inheritDoc}
+	  */
+	@Override
+	public «getTypeName(f.newTypeRef(getDaoInterfaceName(e)), importManager)» get«e.name»Dao() {
+		// PROTECTED REGION ID(«getProtectedRegionName(e, 'factory.getdao.impl')») ENABLED START
+		// Add your own code here
+		return getDao(«getTypeName(f.newTypeRef(getDaoInterfaceName(e)), importManager)».class);
+		// PROTECTED REGION END
+	}
+	
+	«ENDIF»
+	«ENDFOR»
+
+	// PROTECTED REGION ID(«getProtectedRegionName(f, 'factory.impl')») ENABLED START
+	// Add your own implementations here
+	// PROTECTED REGION END
+
+}
+'''
+	}  	
+  	
   	
   	
 }

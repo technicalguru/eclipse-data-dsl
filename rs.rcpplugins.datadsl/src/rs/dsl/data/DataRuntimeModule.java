@@ -3,7 +3,15 @@
  */
 package rs.dsl.data;
 
+import net.danieldietrich.protectedregions.ParserFactory;
+import net.danieldietrich.protectedregions.xtext.ProtectedRegionEclipseResourceFileSystemAccess2;
+import net.danieldietrich.protectedregions.xtext.ProtectedRegionJavaIoFileSystemAccess;
+
+import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+
+import com.google.inject.Provides;
 
 import rs.dsl.data.generator.DataGenerator;
 
@@ -20,5 +28,16 @@ public class DataRuntimeModule extends rs.dsl.data.AbstractDataRuntimeModule {
 		return DataGenerator.class;
 	}
 
+	@Provides
+	public JavaIoFileSystemAccess createJavaIoFileSystemAccess(ProtectedRegionJavaIoFileSystemAccess fsa, ParserFactory factory) {
+	  fsa.support().addParser(factory.javaParser(), ".java");
+	  fsa.support().addParser(factory.xmlParser(), ".xml", ".xsd");
+	  return fsa;
+	}
 	
+	@Provides
+	public EclipseResourceFileSystemAccess2 createEclipseResourceFileSystemAccess2(ProtectedRegionEclipseResourceFileSystemAccess2 fsa, ParserFactory factory) {
+	  fsa.support().addParser(factory.genericParser());
+	  return fsa;
+	}
 }

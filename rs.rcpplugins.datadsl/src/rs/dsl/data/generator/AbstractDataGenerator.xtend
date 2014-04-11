@@ -14,6 +14,7 @@ import rs.dsl.data.dataDsl.Entity
 import rs.dsl.data.dataDsl.FactoryDefinition
 import rs.dsl.data.dataDsl.PackageDeclaration
 import rs.dsl.data.dataDsl.Feature
+import org.eclipse.emf.ecore.EObject
 
 /**
  * Abstract implementations.
@@ -134,4 +135,18 @@ abstract class AbstractDataGenerator  implements IGenerator {
 		return 'set'+f.name.toFirstUpper
 	}
 
+	def String getSetterArgumentName(String featureName) {
+		// modifiers
+		if ((featureName == 'public') || (featureName == 'protected') || (featureName == 'private') || (featureName == 'abstract')) return 'is'+featureName.toFirstUpper
+		// Java types
+		if ((featureName == 'int') || (featureName == 'long') || (featureName == 'float') || (featureName == 'double') || (featureName == 'boolean')) return featureName+'Value'
+		// other Java keywords
+		if ((featureName == 'class') || (featureName == 'interface') || (featureName == 'package') || 
+			(featureName == 'extends') || (featureName == 'implements') || (featureName == 'return') || (featureName == 'if')) return featureName+'Value'
+		return featureName;
+	}
+	
+	def getProtectedRegionName(EObject e, String qualifier) {
+		return e.fullyQualifiedName.toString+'.'+qualifier.toFirstUpper
+	}
 }
